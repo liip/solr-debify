@@ -1,0 +1,20 @@
+#!/bin/sh
+
+set -e
+
+case "$1" in
+    purge)
+        if [ -d /var/log/solr ]; then rm -r /var/log/solr; fi
+
+        if getent passwd solr >/dev/null; then
+            if [ -x "`which deluser 2>/dev/null`" ]; then
+                deluser --system solr || echo "Could not remove solr user."
+            fi
+        fi
+        ;;
+esac
+
+#DEBHELPER#
+
+exit 0
+

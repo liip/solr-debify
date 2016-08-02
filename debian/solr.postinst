@@ -1,0 +1,26 @@
+#!/bin/sh
+
+set -e
+
+# creating solr user if he isn't already there
+if ! getent passwd solr >/dev/null; then
+    adduser --system --group --home /usr/share/solr solr
+    usermod -c "Apache Solr Server"       solr
+    usermod -d "/usr/share/solr"          solr
+    usermod -g "solr"                     solr
+    usermod -s "/bin/false"               solr
+
+fi
+
+if [ "$1" = configure ]; then
+    # set up custom PPD directory
+    if ! dpkg-statoverride --list /var/log/solr > /dev/null
+    then
+        chown solr: /var/log/solr 2>/dev/null || true
+    fi
+fi
+
+#DEBHELPER#
+
+exit 0
+
