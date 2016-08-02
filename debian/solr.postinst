@@ -21,9 +21,10 @@ if [ "$1" = configure ]; then
         fi
     done
 
-    # If dest is empty; copy the Core where it goes
+    # Copy the original SOLR_HOME content into the live conten
     if [ "$(ls -A /var/lib/solr)" ]; then
         cp -R /usr/share/solr/server/solr/ /var/lib/solr
+        chown -R solr:solr /var/lib/solr
     fi
 fi
 

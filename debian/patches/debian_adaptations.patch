@@ -24,13 +24,12 @@
  
  # Anything you add to the SOLR_OPTS variable will be included in the java
  # start command line as-is, in ADDITION to other options. If you specify the
---- a/server/solr/solr.xml
-+++ b/server/solr/solr.xml
-@@ -32,6 +32,7 @@
+@@ -84,7 +84,7 @@
  
-     <str name="host">${host:}</str>
-     <int name="hostPort">${jetty.port:8983}</int>
-+    <str name="coreRootDirectory">/var/lib/solr</int>
-     <str name="hostContext">${hostContext:solr}</str>
+ # Path to a directory for Solr to store cores and their data. By default, Solr will use server/solr
+ # If solr.xml is not stored in ZooKeeper, this directory needs to contain solr.xml
+-#SOLR_HOME=
++SOLR_HOME=/var/lib/solr
  
-     <bool name="genericCoreNodeNames">${genericCoreNodeNames:true}</bool>
+ # Solr provides a default Log4J configuration properties file in server/resources
+ # however, you may want to customize the log settings and file appender location
