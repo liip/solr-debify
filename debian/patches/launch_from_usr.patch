@@ -13,3 +13,14 @@
  DEFAULT_SERVER_DIR="$SOLR_TIP/server"
  
  # If an include wasn't specified in the environment, then search for one...
+--- a/bin/solr.in.sh
++++ b/bin/solr.in.sh
+@@ -69,7 +69,7 @@
+ # RMI_PORT=18983
+ 
+ # Set the thread stack size
+-SOLR_OPTS="$SOLR_OPTS -Xss256k"
++SOLR_OPTS="-Xss256k"
+ 
+ # Anything you add to the SOLR_OPTS variable will be included in the java
+ # start command line as-is, in ADDITION to other options. If you specify the
