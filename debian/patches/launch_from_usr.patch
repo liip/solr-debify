@@ -24,3 +24,13 @@
  
  # Anything you add to the SOLR_OPTS variable will be included in the java
  # start command line as-is, in ADDITION to other options. If you specify the
+--- a/server/solr/solr.xml
++++ b/server/solr/solr.xml
+@@ -32,6 +32,7 @@
+ 
+     <str name="host">${host:}</str>
+     <int name="hostPort">${jetty.port:8983}</int>
++    <str name="coreRootDirectory">/var/lib/solr</int>
+     <str name="hostContext">${hostContext:solr}</str>
+ 
+     <bool name="genericCoreNodeNames">${genericCoreNodeNames:true}</bool>
