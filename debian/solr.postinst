@@ -20,6 +20,11 @@ if [ "$1" = configure ]; then
             chown solr:solr $d 2>/dev/null || true
         fi
     done
+
+    # If dest is empty; copy the Core where it goes
+    if [ "$(ls -A /var/lib/solr)" ]; then
+        cp -R /usr/share/solr/server/solr/ /var/lib/solr
+    fi
 fi
 
 #DEBHELPER#
