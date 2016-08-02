@@ -1,0 +1,6 @@
+bin/solr    usr/bin/
+contrib     usr/share/solr/
+dist        usr/share/solr/
+licenses    usr/share/solr/
+server      usr/share/solr/
+docs/*      usr/share/doc/solr/
