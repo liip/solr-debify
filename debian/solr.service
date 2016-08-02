@@ -1,0 +1,13 @@
+[Unit]
+Description=solr
+Wants=network.target
+
+[Service]
+User=solr
+EnvironmentFile=/etc/default/solr.in.sh
+ExecStart=/usr/bin/solr -f
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
