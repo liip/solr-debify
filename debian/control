@@ -1,0 +1,22 @@
+Source: solr
+Standards-Version: 3.9.8
+Priority: optional
+Section: net
+Maintainer: Liip eLearning Team <elearning+solr@liip.ch>
+Uploaders:
+ Didier Raboud <didier.raboud@liip.ch>,
+Build-Depends: 
+ debhelper,
+Homepage: https://lucene.apache.org/solr/
+
+Package: solr
+Architecture: all
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Entreprise search server based on lucene3
+ Solr (pronounced "solar") is an open source enterprise search platform,
+ written in Java, from the Apache Lucene project. Its major features include
+ full-text search, hit highlighting, faceted search, real-time indexing,
+ dynamic clustering, database integration, NoSQL features and rich document
+ (e.g., Word, PDF) handling. Providing distributed search and index
+ replication, Solr is designed for scalability and fault tolerance.
+
