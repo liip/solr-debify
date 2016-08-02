@@ -1,4 +1,5 @@
 bin/solr    usr/bin/
+bin/solr.in.sh  etc/default/
 contrib     usr/share/solr/
 dist        usr/share/solr/
 licenses    usr/share/solr/
