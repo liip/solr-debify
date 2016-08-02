@@ -13,4 +13,4 @@ server/solr/        usr/share/solr/server/
 server/README.txt   usr/share/solr/server/
 server/start.jar    usr/share/solr/server/
 docs/*      usr/share/doc/solr/
-server/etc/         etc/solr/
+server/etc/*        etc/solr/
