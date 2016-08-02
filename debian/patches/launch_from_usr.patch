@@ -1,0 +1,15 @@
+--- a/bin/solr
++++ b/bin/solr
+@@ -70,8 +70,10 @@
+   fi
+ done
+ 
+-SOLR_TIP=`dirname "$SOLR_SCRIPT"`/..
+-SOLR_TIP=`cd "$SOLR_TIP"; pwd`
++# Debian package directories
++SOLR_TIP="/usr/share/solr"
++SOLR_LOGS_DIR="/var/log/solr"
++
+ DEFAULT_SERVER_DIR="$SOLR_TIP/server"
+ 
+ # If an include wasn't specified in the environment, then search for one...
