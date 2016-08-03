@@ -1,0 +1,35 @@
+---
+# This is the file used by Ansible to provision your project
+# You can decide what you want to install in your box by choosing
+# various provided roles or add tasks to this file. If you need
+# more explanation, please refer to the drifter README
+
+# For some part, multiple roles are proposed, just uncomment the ones
+# you need.
+
+- hosts: all
+  vars_files:
+   - parameters.yml
+  become: no
+
+  roles:
+    ## Install some base packages and configuration files, this should be ok for all projects
+    - { role: base }
+    - { role: git }
+
+  tasks:
+    - name: Enable jessie-backports repository
+      apt_repository: repo='deb http://deb.debian.org/debian/ jessie-backports main' state=present update_cache=yes
+      become: yes
+    - name: Install dpkg-dev
+      apt: name=dpkg-dev state=latest default_release=jessie-backports
+      become: yes
+    - name: Install debhelper
+      apt: name=debhelper state=latest default_release=jessie-backports
+      become: yes
+    - name: Install devscripts
+      apt: name=devscripts state=latest default_release=jessie-backports
+      become: yes
+    - name: Install quilt
+      apt: name=quilt state=latest default_release=jessie-backports
+      become: yes
