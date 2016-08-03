@@ -21,18 +21,12 @@
     - name: Enable jessie-backports repository
       apt_repository: repo='deb http://deb.debian.org/debian/ jessie-backports main' state=present update_cache=yes
       become: yes
-    - name: Install dpkg-dev
-      apt: name=dpkg-dev state=latest default_release=jessie-backports
+    - name: Install build-dependencies from backports when needed
+      apt: pkg={{ item }} default_release=jessie-backports state=latest
       become: yes
-    - name: Install debhelper
-      apt: name=debhelper state=latest default_release=jessie-backports
-      become: yes
-    - name: Install dh-systemd
-      apt: name=dh-systemd state=latest default_release=jessie-backports
-      become: yes
-    - name: Install devscripts
-      apt: name=devscripts state=latest default_release=jessie-backports
-      become: yes
-    - name: Install quilt
-      apt: name=quilt state=latest default_release=jessie-backports
-      become: yes
+      with_items:
+        - dpkg-dev
+        - debhelper
+        - dh-systemd
+        - devscripts
+        - quilt
