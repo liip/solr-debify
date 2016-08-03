@@ -5,3 +5,16 @@
 
 override_dh_installchangelogs:
 	dh_installchangelogs -- CHANGES.txt
+
+get-orig-source:
+	# Run uscan to a temporary directory to be sure there's only one orig file there
+	set -e; \
+		SOURCE=`dpkg-parsechangelog -S Source`; \
+		newupstreamdir=`mktemp -d`; \
+		uscan --verbose --force-download --destdir=$${newupstreamdir}; \
+		UVERSION=`cd $${newupstreamdir}; ls $${SOURCE}*.orig.tar.* | perl -pe "s/^$${SOURCE}_(\d[\-+\.:\~\da-zA-Z]*).orig.tar.*$$/\1/g"`; \
+		cp -a $${newupstreamdir}/$${SOURCE}_$${UVERSION}.orig.tar.* ../ ; \
+		rm -Rf $${newupstreamdir}; \
+		tar --strip-components=1 -xavf ../$${SOURCE}_$${UVERSION}.orig.tar.* ; \
+		dch --newversion $${UVERSION}-0generator0 --force-bad-version -m "New $${SOURCE} $${UVERSION} release" ; \
+		dch --release ""
