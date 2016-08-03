@@ -9,8 +9,9 @@ override_dh_installchangelogs:
 get-orig-source:
 	# Run uscan to a temporary directory to be sure there's only one orig file there
 	set -e; \
-		SOURCE=`dpkg-parsechangelog | sed -e 's/^Source: //p'`; \
+		SOURCE=`dpkg-parsechangelog | sed -n 's/^Source: //p'`; \
 		newupstreamdir=`mktemp -d`; \
+		echo "Dowloading the latest $${SOURCE} version to ${newupstreamdir}"; \
 		uscan --verbose --force-download --destdir=$${newupstreamdir}; \
 		UVERSION=`cd $${newupstreamdir}; ls $${SOURCE}*.orig.tar.* | perl -pe "s/^$${SOURCE}_(\d[\-+\.:\~\da-zA-Z]*).orig.tar.*$$/\1/g"`; \
 		cp -a $${newupstreamdir}/$${SOURCE}_$${UVERSION}.orig.tar.* ../ ; \
