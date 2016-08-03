@@ -15,7 +15,6 @@ provision_job:
     stage: provision
     script:
       - vagrant up --provider lxc
-      - vagrant provision
 
 fetch_job:
     stage: fetch
