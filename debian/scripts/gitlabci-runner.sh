@@ -24,4 +24,4 @@ vagrant ssh -c "./debian/rules get-orig-source"
 
 echo "Build the package"
 mkdir binarybuilds
-vagrant ssh -c "BUILD_DESTDIR=./binarybuilds dpkg-buildpackage -b"
+vagrant ssh -c "BUILD_DESTDIR=./binarybuilds dpkg-buildpackage --build=binary --unsigned-changes"
