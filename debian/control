@@ -7,6 +7,7 @@ Uploaders:
  Didier Raboud <didier.raboud@liip.ch>,
 Build-Depends: 
  debhelper,
+ dh-systemd,
 Homepage: https://lucene.apache.org/solr/
 
 Package: solr

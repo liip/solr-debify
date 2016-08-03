@@ -27,6 +27,9 @@
     - name: Install debhelper
       apt: name=debhelper state=latest default_release=jessie-backports
       become: yes
+    - name: Install dh-systemd
+      apt: name=dh-systemd state=latest default_release=jessie-backports
+      become: yes
     - name: Install devscripts
       apt: name=devscripts state=latest default_release=jessie-backports
       become: yes
