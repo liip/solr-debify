@@ -5,35 +5,9 @@ before_script:
     - ln -s ../${PWD##*/}.vagrant .vagrant
     - git submodule sync
     - git submodule update --init
-stages:
-    - provision
-    - fetch
-    - build
-    - cleanup
 
-provision_job:
-    stage: provision
-    script:
-      - vagrant up --provider lxc
-
-fetch_job:
-    stage: fetch
-    script:
-      - vagrant ssh -c "./debian/rules get-orig-source"
+build:
+    script: "./debian/scripts/gitlabci-runner.sh"
     tags:
         - shell
         - lxc
-
-build_job:
-    stage: build
-    script:
-        - vagrant ssh -c "dpkg-buildpackage -b"
-    tags:
-        - shell
-        - lxc
-
-cleanup_job:
-    stage: cleanup
-    script:
-      - vagrant halt
-    when: always
