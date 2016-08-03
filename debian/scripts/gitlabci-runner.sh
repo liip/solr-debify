@@ -23,4 +23,5 @@ echo "Get the original source"
 vagrant ssh -c "./debian/rules get-orig-source"
 
 echo "Build the package"
-vagrant ssh -c "dpkg-buildpackage -b"
+mkdir binarybuilds
+vagrant ssh -c "BUILD_DESTDIR=./binarybuilds dpkg-buildpackage -b"

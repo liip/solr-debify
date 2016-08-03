@@ -3,8 +3,13 @@
 %:
 	dh $@ --with systemd
 
+export BUILD_DESTDIR?=../
+
 override_dh_installchangelogs:
 	dh_installchangelogs -- CHANGES.txt
+
+override_dh_builddeb:
+	dh_builddeb --destdir=${BUILD_DESTDIR}
 
 get-orig-source:
 	# Run uscan to a temporary directory to be sure there's only one orig file there
