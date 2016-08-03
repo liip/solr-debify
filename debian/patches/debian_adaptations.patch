@@ -1,3 +1,9 @@
+Description: Adapt some files to Debian packaging:
+ - /usr/bin/solr
+ - /etc/default/solr.in.sh
+Author: Didier Raboud <odyx@liip.ch>
+Origin: vendor
+
 --- a/bin/solr
 +++ b/bin/solr
 @@ -70,8 +70,10 @@
