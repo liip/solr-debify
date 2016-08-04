@@ -11,6 +11,7 @@ build:
     tags:
         - shell
         - lxc
-    artifacts:
-      paths:
-        - ./*.deb
+## .deb artifact too big for GitLab CI
+#    artifacts:
+#      paths:
+#        - ./*.deb
