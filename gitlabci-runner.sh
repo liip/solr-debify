@@ -19,9 +19,12 @@ date
 vagrant provision
 date
 
-echo "Get the original source"
+echo "* Get the original source"
 vagrant ssh -c "cd solr-build; ./debian/rules get-orig-source"
 
-echo "Build the package"
+echo "* Apply patches"
+vagrant ssh -c "cd solr-build; quilt push -af"
+
+echo "* Build the package"
 mkdir binarybuilds
 vagrant ssh -c "cd solr-build; dpkg-buildpackage -b -uc"
