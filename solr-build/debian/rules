@@ -14,6 +14,7 @@ get-orig-source:
 		echo "Dowloading the latest $${SOURCE} version to $${newupstreamdir}"; \
 		uscan --verbose --force-download --destdir=$${newupstreamdir}; \
 		UVERSION=`cd $${newupstreamdir}; ls $${SOURCE}*.orig.tar.* | perl -pe "s/^$${SOURCE}_(\d[\-+\.:\~\da-zA-Z]*).orig.tar.*$$/\1/g"`; \
+		rm -Rf .pc ; \
 		tar --strip-components=1 -xavf $${newupstreamdir}/$${SOURCE}_$${UVERSION}.orig.tar.* ; \
 		rm -Rf $${newupstreamdir}; \
 		dch --newversion $${UVERSION}-0generator0 --force-bad-version -m "New $${SOURCE} $${UVERSION} release" ; \
