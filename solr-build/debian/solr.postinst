@@ -23,7 +23,7 @@ if [ "$1" = configure ]; then
 
     # Copy the original SOLR_HOME content into the live conten
     if [ -z "$(ls -A /var/lib/solr)" ]; then
-        cp -R /usr/share/solr/server/solr/ /var/lib/solr
+        cp -R /usr/share/solr/server/solr/* /var/lib/solr/
         chown -R solr:solr /var/lib/solr
     fi
 fi
