@@ -7,7 +7,7 @@ before_script:
     - git submodule update --init
 
 build:
-    script: "./debian/scripts/gitlabci-runner.sh"
+    script: "./gitlabci-runner.sh"
     tags:
         - shell
         - lxc

@@ -20,8 +20,8 @@ vagrant provision
 date
 
 echo "Get the original source"
-vagrant ssh -c "./debian/rules get-orig-source"
+vagrant ssh -c "cd solr-build; ./debian/rules get-orig-source"
 
 echo "Build the package"
 mkdir binarybuilds
-vagrant ssh -c "BUILD_DESTDIR=./binarybuilds dpkg-buildpackage -b -uc" || :
+vagrant ssh -c "cd solr-build; dpkg-buildpackage -b -uc"
