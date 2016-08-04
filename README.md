@@ -9,17 +9,18 @@ How to build a solr package
 ---------------------------
 
 1. Make sure to have the following packages installed (from jessie-backports)
-
-* dpkg-dev (>= 1.17)
-* debhelper (>= 9.20160403)
-* dh-systemd
-* devscripts (>= 2.16.4)
-* quilt
+<pre>
+    dpkg-dev (>= 1.17)
+    debhelper (>= 9.20160403)
+    dh-systemd
+    devscripts (>= 2.16.4)
+    quilt
+</pre>
 
 2. Download the latest version and prepare the build: run the following
    command from the `solr-build` directory:
 <pre>
-$ ./debian/rules get-orig-source
+    $ ./debian/rules get-orig-source
 </pre>
 
 3. Apply the patches:
