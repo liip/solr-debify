@@ -11,3 +11,6 @@ build:
     tags:
         - shell
         - lxc
+    artifacts:
+      paths:
+        - ./*.deb
