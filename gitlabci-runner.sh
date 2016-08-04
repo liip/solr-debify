@@ -23,8 +23,7 @@ echo "* Get the original source"
 vagrant ssh -c "cd solr-build; ./debian/rules get-orig-source"
 
 echo "* Apply patches"
-vagrant ssh -c "cd solr-build; quilt push -af"
+vagrant ssh -c "cd solr-build; QUILT_PATCHES=debian/patches quilt push -af" || :
 
 echo "* Build the package"
-mkdir binarybuilds
 vagrant ssh -c "cd solr-build; dpkg-buildpackage -b -uc"
