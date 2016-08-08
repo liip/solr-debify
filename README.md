@@ -23,6 +23,11 @@ How to build a solr package
     $ ./debian/rules get-orig-source
 </pre>
 
+If you want to download a specific version:
+<pre>
+    $ UPSTREAM_VERSION=5.5.2 ./debian/rules get-orig-source
+</pre>
+
 3. Apply the patches:
 <pre>
     $ quilt push -af
