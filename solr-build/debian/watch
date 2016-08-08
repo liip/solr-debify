@@ -1,4 +1,4 @@
 version=4
 # Make the -src variant lower than our target version
-opts="uversionmangle=s/-src/~source/,pgpsigurlmangle=s%mirror\.easyname\.ch/apache%www-eu.apache.org/dist%;s%$%.asc%" \
-http://mirror.easyname.ch/apache/lucene/@PACKAGE@/(\d[\-+\.:\~\da-zA-Z]*)/@PACKAGE@-(\d[\-+\.:\~\da-zA-Z]*).tgz
+opts="uversionmangle=s/-src/~source/,pgpsigurlmangle=s%$%.asc%" \
+https://archive.apache.org/dist/lucene/@PACKAGE@/(\d[\-+\.:\~\da-zA-Z]*)/@PACKAGE@-(\d[\-+\.:\~\da-zA-Z]*).tgz
