@@ -6,13 +6,17 @@
 override_dh_installchangelogs:
 	dh_installchangelogs -- CHANGES.txt
 
+UPSTREAM_VERSION?=latest
+
 get-orig-source:
 	# Run uscan to a temporary directory to be sure there's only one orig file there
 	set -e; \
+		USCAN_OPTS='' ;\
+		[ "${UPSTREAM_VERSION}" = "latest" ] || USCAN_OPTS="--download-version ${UPSTREAM_VERSION}"; \
 		SOURCE=`dpkg-parsechangelog | sed -n 's/^Source: //p'`; \
 		newupstreamdir=`mktemp -d`; \
 		echo "Dowloading the latest $${SOURCE} version to $${newupstreamdir}"; \
-		uscan --verbose --force-download --destdir=$${newupstreamdir}; \
+		uscan --verbose --force-download $${USCAN_OPTS} --destdir=$${newupstreamdir}; \
 		UVERSION=`cd $${newupstreamdir}; ls $${SOURCE}*.orig.tar.* | perl -pe "s/^$${SOURCE}_(\d[\-+\.:\~\da-zA-Z]*).orig.tar.*$$/\1/g"`; \
 		rm -Rf .pc ; \
 		tar --strip-components=1 -xavf $${newupstreamdir}/$${SOURCE}_$${UVERSION}.orig.tar.* ; \
