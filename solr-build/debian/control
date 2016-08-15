@@ -15,6 +15,7 @@ Architecture: all
 Depends: ${shlibs:Depends},
  ${misc:Depends},
  adduser,
+ lsof,
  openjdk-8-jre-headless
 Description: Entreprise search server based on lucene3
  Solr (pronounced "solar") is an open source enterprise search platform,

@@ -55,3 +55,14 @@ Origin: vendor
  
  # Sets the port Solr binds to, default is 8983
  #SOLR_PORT=8983
+--- a/bin/init.d/solr
++++ b/bin/init.d/solr
+@@ -33,7 +33,7 @@
+ #   update-rc.d solr enable
+ 
+ # Where you extracted the Solr distribution bundle
+-SOLR_INSTALL_DIR="/opt/solr"
++SOLR_INSTALL_DIR="/usr"
+ 
+ if [ ! -d "$SOLR_INSTALL_DIR" ]; then
+   echo "$SOLR_INSTALL_DIR not found! Please check the SOLR_INSTALL_DIR setting in your $0 script."
