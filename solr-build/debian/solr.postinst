@@ -2,11 +2,14 @@
 
 set -e
 
+SOLR_VAR_DIR=/var/lib/solr
+SOLR_VAR_DIR_LOGS=/var/log/solr
+
 # creating solr user if he isn't already there
 if ! getent passwd solr >/dev/null; then
     adduser --system --group --home /usr/share/solr solr
     usermod -c "Apache Solr Server"       solr
-    usermod -d "/usr/share/solr"          solr
+    usermod -d "$SOLR_VAR_DIR"            solr
     usermod -g "solr"                     solr
     usermod -s "/bin/false"               solr
 
@@ -14,17 +17,23 @@ fi
 
 if [ "$1" = configure ]; then
     # set up custom directories
-    for d in /var/log/solr /var/lib/solr; do
+    for d in $SOLR_VAR_DIR_LOGS $SOLR_VAR_DIR; do
         if ! dpkg-statoverride --list $d > /dev/null
         then
             chown solr:solr $d 2>/dev/null || true
         fi
     done
 
-    # Copy the original SOLR_HOME content into the live conten
-    if [ -z "$(ls -A /var/lib/solr)" ]; then
-        cp -R /usr/share/solr/server/solr/* /var/lib/solr/
-        chown -R solr:solr /var/lib/solr
+    # Copy the original SOLR_HOME content into the SOLR_VAR_DIR_DATA
+    if [ -z "$(ls -A $SOLR_VAR_DIR)" ]; then
+        mkdir -p "$SOLR_VAR_DIR/data"
+
+        cp /usr/share/solr/server/solr/solr.xml "$SOLR_VAR_DIR/data/solr.xml"
+
+        cp /usr/share/solr/server/resources/log4j.properties "$SOLR_VAR_DIR/log4j.properties"
+        sed_expr="s#solr.log=.*#solr.log=$SOLR_VAR_DIR_LOGS#"
+        sed -i -e "$sed_expr" "$SOLR_VAR_DIR/log4j.properties"
+        chown -R solr:solr $SOLR_VAR_DIR
     fi
 fi
 
