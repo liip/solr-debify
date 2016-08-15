@@ -7,6 +7,7 @@ override_dh_installchangelogs:
 	dh_installchangelogs -- CHANGES.txt
 
 UPSTREAM_VERSION?=latest
+PACKAGING_REVISION?=$(shell date +%Y%m%d)00
 
 get-orig-source:
 	# Run uscan to a temporary directory to be sure there's only one orig file there
@@ -21,5 +22,5 @@ get-orig-source:
 		rm -Rf .pc ; \
 		tar --strip-components=1 -xavf $${newupstreamdir}/$${SOURCE}_$${UVERSION}.orig.tar.* ; \
 		rm -Rf $${newupstreamdir}; \
-		dch --newversion $${UVERSION}-0generator0 --force-bad-version -m "New $${SOURCE} $${UVERSION} release" ; \
+		dch --newversion $${UVERSION}-0~${PACKAGING_REVISION} --force-bad-version -m "New $${SOURCE} $${UVERSION} release" ; \
 		dch --release ""
