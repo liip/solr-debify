@@ -33,3 +33,6 @@ vagrant ssh -c "sudo apt-get -y purge solr; sudo rm -Rf /var/lib/solr /var/log/s
 
 echo "* Install the package in the vagrant box"
 vagrant ssh -c "sudo dpkg -i solr_*_all.deb; sudo apt-get install -f -y"
+
+echo "* Test that the webinterface is up"
+vagrant ssh -c "HEAD 'http://localhost:8983/solr/'"
