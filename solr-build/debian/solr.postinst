@@ -7,12 +7,11 @@ SOLR_VAR_DIR_LOGS=/var/log/solr
 
 # creating solr user if he isn't already there
 if ! getent passwd solr >/dev/null; then
-    adduser --system --group --home /usr/share/solr solr
+    adduser --system --group --home $SOLR_VAR_DIR solr
     usermod -c "Apache Solr Server"       solr
     usermod -d "$SOLR_VAR_DIR"            solr
     usermod -g "solr"                     solr
-    usermod -s "/bin/false"               solr
-
+    usermod -s "/bin/sh"                  solr
 fi
 
 if [ "$1" = configure ]; then
