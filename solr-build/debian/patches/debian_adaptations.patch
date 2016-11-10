@@ -6,7 +6,7 @@ Origin: vendor
 
 --- a/bin/solr
 +++ b/bin/solr
-@@ -70,8 +70,10 @@
+@@ -73,8 +73,10 @@
    fi
  done
  
@@ -21,16 +21,7 @@ Origin: vendor
  # If an include wasn't specified in the environment, then search for one...
 --- a/bin/solr.in.sh
 +++ b/bin/solr.in.sh
-@@ -69,7 +69,7 @@
- # RMI_PORT=18983
- 
- # Set the thread stack size
--SOLR_OPTS="$SOLR_OPTS -Xss256k"
-+SOLR_OPTS="-Xss256k"
- 
- # Anything you add to the SOLR_OPTS variable will be included in the java
- # start command line as-is, in ADDITION to other options. If you specify the
-@@ -80,20 +80,20 @@
+@@ -73,23 +73,23 @@
  
  # Location where the bin/solr script will save PID files for running instances
  # If not set, the script will create PID files in $SOLR_TIP/bin
@@ -48,9 +39,12 @@ Origin: vendor
 -#LOG4J_PROPS=/var/solr/log4j.properties
 +LOG4J_PROPS="/var/lib/solr/log4j.properties"
  
- # Location where Solr should write logs to; should agree with the file appender
- # settings in server/resources/log4j.properties
--#SOLR_LOGS_DIR=
+ # Changes the logging level. Valid values: ALL, TRACE, DEBUG, INFO, WARN, ERROR, FATAL, OFF. Default is INFO
+ # This is an alternative to changing the rootLogger in log4j.properties
+ #SOLR_LOG_LEVEL=INFO
+ 
+ # Location where Solr should write logs to. Absolute or relative to solr start dir
+-#SOLR_LOGS_DIR=logs
 +SOLR_LOGS_DIR="/var/log/solr"
  
  # Sets the port Solr binds to, default is 8983
