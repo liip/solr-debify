@@ -4,7 +4,7 @@ Last-Update: 2016-08-15
 
 --- a/bin/solr.in.sh
 +++ b/bin/solr.in.sh
-@@ -51,7 +51,9 @@
+@@ -58,7 +58,9 @@
  
  # By default the start script uses "localhost"; override the hostname here
  # for production SolrCloud environments to control the hostname exposed to cluster state
@@ -13,5 +13,5 @@ Last-Update: 2016-08-15
 +# Force jetty host to be SOLR_HOST
 +SOLR_OPTS="-Djetty.host=$SOLR_HOST"
  
- # By default the start script uses UTC; override the timezone if needed
- #SOLR_TIMEZONE="UTC"
+ # By default Solr will try to connect to Zookeeper with 30 seconds in timeout; override the timeout if needed
+ #SOLR_WAIT_FOR_ZK="30"

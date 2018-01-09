@@ -21,7 +21,7 @@ Origin: vendor
  # If an include wasn't specified in the environment, then search for one...
 --- a/bin/solr.in.sh
 +++ b/bin/solr.in.sh
-@@ -73,23 +73,23 @@
+@@ -83,11 +83,11 @@
  
  # Location where the bin/solr script will save PID files for running instances
  # If not set, the script will create PID files in $SOLR_TIP/bin
@@ -33,6 +33,9 @@ Origin: vendor
 -#SOLR_HOME=
 +SOLR_HOME="/var/lib/solr/data"
  
+ # Path to a directory that Solr will use as root for data folders for each core.
+ # If not set, defaults to <instance_dir>/data. Overridable per core through 'dataDir' core property
+@@ -96,14 +96,14 @@
  # Solr provides a default Log4J configuration properties file in server/resources
  # however, you may want to customize the log settings and file appender location
  # so you can point the script to use a different log4j.properties file
@@ -47,8 +50,8 @@ Origin: vendor
 -#SOLR_LOGS_DIR=logs
 +SOLR_LOGS_DIR="/var/log/solr"
  
- # Sets the port Solr binds to, default is 8983
- #SOLR_PORT=8983
+ # Enables log rotation, cleanup, and archiving during start. Setting SOLR_LOG_PRESTART_ROTATION=false will skip start
+ # time rotation of logs, and the archiving of the last GC and console log files. It does not affect Log4j configuration.
 --- a/bin/init.d/solr
 +++ b/bin/init.d/solr
 @@ -33,7 +33,7 @@
