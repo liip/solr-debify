@@ -4,7 +4,7 @@ set -e
 
 finish() {
     date
-    echo "* Cleanup the build directory"
+    echo "* Cleanup the solr-build directory"
     vagrant ssh -c "rm -Rf ./build/*" || :
     echo "* Halt"
     vagrant halt
@@ -32,17 +32,17 @@ echo "* Cleanup $RESULTDIR directory"
 
 mkdir -p $RESULTDIR
 
-echo "* Cleanup the build directory"
+echo "* Cleanup the solr-build directory"
 vagrant ssh -c "rm -Rf ./build/*"
 
 echo "* Get the original source"
-vagrant ssh -c "cd build; ./debian/rules get-orig-source"
+vagrant ssh -c "cd solr-build; ./debian/rules get-orig-source"
 
 echo "* Apply patches"
-vagrant ssh -c "cd build; QUILT_PATCHES=debian/patches quilt push -af" || :
+vagrant ssh -c "cd solr-build; QUILT_PATCHES=debian/patches quilt push -af" || :
 
 echo "* Build the package"
-vagrant ssh -c "cd build; pdebuild --debbuildopts \"-nc\" --buildresult /vagrant/$RESULTDIR -- --use-network yes"
+vagrant ssh -c "cd solr-build; pdebuild --debbuildopts \"-nc\" --buildresult /vagrant/$RESULTDIR -- --use-network yes"
 
 echo "* Purge previous package traces"
 vagrant ssh -c "sudo apt-get -y purge solr; sudo rm -Rf /var/lib/solr /var/log/solr"
