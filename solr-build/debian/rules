@@ -24,6 +24,7 @@ get-orig-source:
 		UVERSION=`cd $${newupstreamdir}; ls $${SOURCE}*.orig.tar.gz | perl -pe "s/^$${SOURCE}_(\d[\-+\.:\~\da-zA-Z]*).orig.tar.*$$/\1/g"`; \
 		rm -Rf .pc ; \
 		tar --strip-components=1 -xavf $${newupstreamdir}/$${SOURCE}_$${UVERSION}.orig.tar.gz ; \
+		cp $${newupstreamdir}/$${SOURCE}_$${UVERSION}.orig.tar.gz ../; \
 		rm -Rf $${newupstreamdir}; \
 		dch --newversion $${UVERSION}-0~${PACKAGING_REVISION} --force-bad-version -m "New $${SOURCE} $${UVERSION} release" ; \
 		dch --release ""
