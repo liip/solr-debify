@@ -23,7 +23,6 @@
       become: yes
       with_items:
         - pbuilder
-        - uscan
         - quilt
         - git-buildpackage
         - dput-ng
