@@ -18,16 +18,17 @@
     - { role: git }
 
   tasks:
-    - name: Enable jessie-backports repository
-      apt_repository: repo='deb http://deb.debian.org/debian/ jessie-backports main' state=present update_cache=yes
-      become: yes
-    - name: Install build-dependencies from backports when needed
-      apt: pkg={{ item }} default_release=jessie-backports state=latest
+    - name: Install build-dependencies
+      apt: pkg={{ item }} state=latest
       become: yes
       with_items:
-        - dpkg-dev
-        - debhelper
-        - dh-systemd
-        - devscripts
-        - quilt
-        - libwww-perl
+        - pbuilder
+        - git-buildpackage
+        - dput-ng
+        - openssh-client
+    - name: Setup pbuilder base sid archive
+      command: pbuilder create --distribution sid --debootstrapopts --variant=buildd creates=/var/cache/pbuilder/base.tgz
+      become: yes
+    - name: Update pbuilder sid archive
+      command: pbuilder update --distribution sid
+      become: yes

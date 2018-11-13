@@ -42,7 +42,7 @@ echo "* Apply patches"
 vagrant ssh -c "cd build; QUILT_PATCHES=debian/patches quilt push -af" || :
 
 echo "* Build the package"
-vagrant ssh -c "cd build; dpkg-buildpackage -b -uc"
+vagrant ssh -c "cd build; pdebuild --debbuildopts \"-nc\" --buildresult /vagrant/$RESULTDIR -- --use-network yes"
 
 echo "* Purge previous package traces"
 vagrant ssh -c "sudo apt-get -y purge solr; sudo rm -Rf /var/lib/solr /var/log/solr"
