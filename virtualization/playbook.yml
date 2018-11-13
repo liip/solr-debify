@@ -19,14 +19,18 @@
 
   tasks:
     - name: Install build-dependencies
-      apt: pkg={{ item }} state=latest
+      apt:
+        name:
+          - pbuilder
+          - quilt
+          - git-buildpackage
+          - dput-ng
+          - openssh-client
+          - debhelper
+          - dh-systemd
+        state: latest
+        update_cache: yes
       become: yes
-      with_items:
-        - pbuilder
-        - quilt
-        - git-buildpackage
-        - dput-ng
-        - openssh-client
     - name: Setup pbuilder base sid archive
       command: pbuilder create --distribution sid --debootstrapopts --variant=buildd creates=/var/cache/pbuilder/base.tgz
       become: yes
