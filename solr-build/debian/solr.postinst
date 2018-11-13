@@ -29,9 +29,7 @@ if [ "$1" = configure ]; then
 
         cp /usr/share/solr/server/solr/solr.xml "$SOLR_VAR_DIR/data/solr.xml"
 
-        cp /usr/share/solr/server/resources/log4j.properties "$SOLR_VAR_DIR/log4j.properties"
-        sed_expr="s#solr.log=.*#solr.log=$SOLR_VAR_DIR_LOGS#"
-        sed -i -e "$sed_expr" "$SOLR_VAR_DIR/log4j.properties"
+        cp /usr/share/solr/server/resources/log4j2.xml "$SOLR_VAR_DIR/log4j2.xml"
         chown -R solr:solr $SOLR_VAR_DIR
     fi
 fi
