@@ -30,7 +30,7 @@ if [ "$1" = configure ]; then
         cp /usr/share/solr/server/solr/solr.xml "$SOLR_VAR_DIR/data/solr.xml"
         cp /usr/share/solr/server/resources/log4j2.xml "$SOLR_VAR_DIR/log4j2.xml"
 
-        cp -R /usr/share/solr/server/solr/configsets "$SOLR_VAR_DIR/configsets"
+        cp -R /usr/share/solr/server/solr/configsets "$SOLR_VAR_DIR/data/configsets"
 
         chown -R solr:solr $SOLR_VAR_DIR
     fi
