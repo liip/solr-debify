@@ -51,6 +51,7 @@ echo "* Install the package in the vagrant box"
 vagrant ssh -c "sudo dpkg -i $RESULTDIR/solr_*_all.deb; sudo apt-get install -f -y"
 
 echo "* Test that the webinterface is up"
+sleep 10
 vagrant ssh -c "HEAD 'http://localhost:8983/solr/'"
 
 echo "* Attempt SSH to the destination host"
