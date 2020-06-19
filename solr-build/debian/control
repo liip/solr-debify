@@ -1,8 +1,8 @@
 Source: solr
-Standards-Version: 3.9.8
+Standards-Version: 4.3.0
 Priority: optional
 Section: non-free/web
-Maintainer: Liip eLearning Team <elearning+solr@liip.ch>
+Maintainer: Liip SysAdmin Team <sysadmin+solr@liip.ch>
 Uploaders:
  Didier Raboud <didier.raboud@liip.ch>,
 Build-Depends: 
