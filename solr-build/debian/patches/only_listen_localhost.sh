@@ -4,7 +4,7 @@ Last-Update: 2016-08-15
 
 --- a/bin/solr.in.sh
 +++ b/bin/solr.in.sh
-@@ -58,7 +58,9 @@
+@@ -71,7 +71,9 @@
  
  # By default the start script uses "localhost"; override the hostname here
  # for production SolrCloud environments to control the hostname exposed to cluster state
