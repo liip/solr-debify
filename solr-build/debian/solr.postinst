@@ -33,6 +33,7 @@ if [ "$1" = configure ]; then
         cp -R /usr/share/solr/server/solr/configsets "$SOLR_VAR_DIR/data/configsets"
 
         chown -R solr:solr $SOLR_VAR_DIR
+        chown solr:solr /usr/share/solr/server/solr
     fi
 fi
 
