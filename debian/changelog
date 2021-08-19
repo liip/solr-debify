@@ -1,5 +1,5 @@
-solr (0.20160803-0) UNRELEASED; urgency=low
+solr (8.5.2-0) UNRELEASED; urgency=low
 
   * Initial solr binary release packaging.
 
- -- Didier Raboud (Liip) <didier.raboud@liip.ch>  Wed, 03 Aug 2016 14:47:51 +0200
+ -- Didier Raboud (Liip) <didier.raboud@liip.ch>  Thu, 19 Aug 2021 17:59:57 +0200
